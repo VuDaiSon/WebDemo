@@ -1,0 +1,35 @@
+﻿@model main_prj.Models.Category
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Xóa</h1>
+
+<h3>Bạn chắc chắn muốn xóa danh mục này?</h3>
+<div>
+    <h4>Danh mục</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @* @Html.DisplayNameFor(model => model.CategoryName) *@
+            <label>Tên danh mục</label>
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CategoryName)
+        </dd>
+        <dt class="col-sm-2">
+            <label>Ảnh xem trước</label>
+        </dt>
+        <dd class="col-sm-10">
+            <img src="~/ProductImages/CategoryImages/@Model.CategoryId/@Model.CategoryImage" width="360" height="240"/>
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="CategoryId" />
+        <input type="submit" value="Xóa" class="btn btn-danger" /> |
+        <a asp-action="Index">Về danh sách</a>
+    </form>
+</div>

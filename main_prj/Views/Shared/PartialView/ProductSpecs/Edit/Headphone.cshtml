@@ -1,0 +1,70 @@
+﻿@model main_prj.Models.Headphone
+
+<h4>Tai nghe</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="HeadphoneEdit" asp-controller="Products" method="post" asp-route-id="@Model.HeadphoneId"> 
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group" hidden>
+                <label asp-for="ProductId" class="control-label"></label>
+                <input asp-for="ProductId" class="form-control" readonly/>
+                <span asp-validation-for="ProductId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Brand" class="control-label">Hãng sản xuất</label>
+                <input asp-for="Brand" class="form-control" />
+                <span asp-validation-for="Brand" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Model" class="control-label">Mẫu sản phẩm</label>
+                <input asp-for="Model" class="form-control" />
+                <span asp-validation-for="Model" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Compatibilities" class="control-label">Tương thích</label>
+                <input asp-for="Compatibilities" class="form-control" />
+                <span asp-validation-for="Compatibilities" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ConnectionType" class="control-label">Kiểu kết nối</label>
+                <input asp-for="ConnectionType" class="form-control" />
+                <span asp-validation-for="ConnectionType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Battery" class="control-label">Pin</label>
+                <input asp-for="Battery" class="form-control" />
+                <span asp-validation-for="Battery" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Accessories" class="control-label">Phụ kiện</label>
+                <input asp-for="Accessories" class="form-control" />
+                <span asp-validation-for="Accessories" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Microphone" class="control-label">Micro</label>
+                <input asp-for="Microphone" class="form-control" />
+                <span asp-validation-for="Microphone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HeadphoneType" class="control-label">Kiểu tai nghe</label>
+                <input asp-for="HeadphoneType" class="form-control" />
+                <span asp-validation-for="HeadphoneType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Color" class="control-label">Màu sắc</label>
+                <input asp-for="Color" class="form-control" />
+                <span asp-validation-for="Color" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="HeadphoneId" />
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

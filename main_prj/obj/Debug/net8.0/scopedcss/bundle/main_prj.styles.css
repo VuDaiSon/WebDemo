@@ -1,0 +1,51 @@
+@import '_content/Microsoft.AspNetCore.Components.QuickGrid/Microsoft.AspNetCore.Components.QuickGrid.bundle.scp.css';
+
+/* _content/main_prj/Views/Shared/_Layout.cshtml.rz.scp.css */
+/* Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand[b-auuuxs4ptc] {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+a[b-auuuxs4ptc] {
+  color: #0077cc;
+}
+
+.btn-primary[b-auuuxs4ptc] {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active[b-auuuxs4ptc], .nav-pills .show > .nav-link[b-auuuxs4ptc] {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.border-top[b-auuuxs4ptc] {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom[b-auuuxs4ptc] {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow[b-auuuxs4ptc] {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy[b-auuuxs4ptc] {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+.footer[b-auuuxs4ptc] {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px;
+}

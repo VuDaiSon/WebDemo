@@ -1,0 +1,9 @@
+﻿@model IEnumerable<main_prj.Models.Product>
+@{
+    ViewData["Title"] = "ViewProducts";
+    Layout = "~/Views/Shared/_LayoutProductsView.cshtml";
+}
+
+
+@await Html.PartialAsync("PartialView/_ProductPartial", Model)
+

@@ -1,0 +1,117 @@
+﻿@model main_prj.Models.CheckoutViewModel
+
+@{
+    ViewData["Title"] = "Chi tiết đơn hàng";
+    Layout = "~/Views/Shared/_LayoutClient.cshtml";
+}
+
+<h1>Chi tiết đơn hàng</h1>
+
+<div>
+    <h4>Order</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @* @Html.DisplayNameFor(model => model.Order.OrderDate) *@
+            <label>Ngày đặt</label>
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Order.OrderDate) 
+        </dd>
+        <dt class = "col-sm-2">
+            @* @Html.DisplayNameFor(model => model.Order.TotalValue) *@
+            <label>Tổng tiền</label>
+        </dt>
+        <dd class = "col-sm-10">
+            @Model.Order.TotalValue.ToString("###,###,##0")₫
+        </dd>
+        <dt class = "col-sm-2">
+            @* @Html.DisplayNameFor(model => model.Order.Status) *@
+            <label>Trạng thái</label>
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Order.Status)
+        </dd>
+        <dt class = "col-sm-2">
+            @* @Html.DisplayNameFor(model => model.Order.ShippingAddress) *@
+            <label>Địa chỉ nhận hàng</label>
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Order.ShippingAddress)
+        </dd>
+        <dt class = "col-sm-2">
+            @* @Html.DisplayNameFor(model => model.Order.ContactNumber) *@
+            <label>Điện thoại liên hệ</label>
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Order.ContactNumber)
+        </dd>
+        <dt class = "col-sm-2">
+            @* @Html.DisplayNameFor(model => model.Order.Receiver) *@
+            <label>Tên người nhận</label>
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Order.Receiver)
+        </dd>
+        <dt class = "col-sm-2">
+            @* @Html.DisplayNameFor(model => model.Order.ShippingFee) *@
+            <label>Phí vận chuyển</label>
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Order.ShippingFee)
+        </dd>
+        <dt class = "col-sm-2">
+           @*  @Html.DisplayNameFor(model => model.Order.PaymentMethod) *@
+           <label>Phương thức thanh toán</label>
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Order.PaymentMethod)
+        </dd>        
+    </dl>        
+</div>
+
+<br />
+<h5>Sản phẩm</h5>
+<table class="table table-bordered text-center mb-0">
+    <thead class="bg-secondary text-dark">
+        <tr>
+            <th>Sản phẩm</th>
+            <th>Đơn giá</th>
+            <th>Số lượng</th>
+            <th>Tạm tính</th>
+            
+        </tr>
+    </thead>
+    <tbody class="align-middle">
+
+        @foreach (var item in Model.CartDetails)
+        {
+            var value = item.Product.Price * item.Quantity;
+            <tr class="item-row" data-cart-detail-id="@item.CartDetailId">
+                <td class="align-middle" style="position:relative">
+                    <img src="~/ProductImages/PreviewImages/@item.ProductId/Preview.webp" alt="" style="width: 50px;">
+                    <p> @item.Product.ProductName</p>
+                </td>
+                <td class="align-middle">
+                    <span class="item-price">@item.Product.Price.ToString("##,###,000")</span>₫
+                </td>
+                <td class="align-middle">
+                    <span>@item.Quantity</span>
+                </td>
+                <td class="align-middle">
+                    <span class="item-subtotal">@value.ToString("##,###,000")₫</span>
+                </td>                
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    <a asp-action="ClientIndex">Về trang trước</a> |
+    @if(Model.Order.Status == "Chờ xác nhận")
+    {
+        <a asp-action="CancelOrder" asp-route-id="@Model.Order.OrderId">Hủy đơn</a>
+    }
+</div>
+
+

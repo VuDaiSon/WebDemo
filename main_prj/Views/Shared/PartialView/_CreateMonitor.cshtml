@@ -1,0 +1,41 @@
+﻿@model main_prj.Models.ProductModificationModel;
+
+
+@* <form asp-action="Create">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div> *@
+<div class="form-group">
+    <h5>Thông số kỹ thuật (Màn hình)</h5>
+</div>
+<div class="form-group">
+    <label asp-for="Monitor.Brand" class="control-label">Hãng sản xuất</label>
+    <input asp-for="Monitor.Brand" class="form-control" />
+    <span asp-validation-for="Monitor.Brand" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="Monitor.Model" class="control-label">Mẫu sản phẩm</label>
+    <input asp-for="Monitor.Model" class="form-control" />
+    <span asp-validation-for="Monitor.Model" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="Monitor.Size" class="control-label">Kích thước màn</label>
+    <input asp-for="Monitor.Size" class="form-control" />
+    <span asp-validation-for="Monitor.Size" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="Monitor.AspectRatio" class="control-label">Tỷ lệ khung hình</label>
+    <input asp-for="Monitor.AspectRatio" class="form-control" />
+    <span asp-validation-for="Monitor.AspectRatio" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="Monitor.Resolution" class="control-label">Độ phân giải</label>
+    <input asp-for="Monitor.Resolution" class="form-control" />
+    <span asp-validation-for="Monitor.Resolution" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="Monitor.RefreshRate" class="control-label">Tốc độ khung hình</label>
+    <input asp-for="Monitor.RefreshRate" class="form-control" />
+    <span asp-validation-for="Monitor.RefreshRate" class="text-danger"></span>
+</div>
+
+
+@* </form> *@

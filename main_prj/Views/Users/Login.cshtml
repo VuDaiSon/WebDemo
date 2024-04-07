@@ -1,0 +1,98 @@
+﻿@{
+    Layout = null;
+}
+
+@model main_prj.Models.User
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <link href="/css/login.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+</head>
+<body>
+    <br>
+    <br>
+
+    <div class="cont">
+
+        <div class="form sign-in">
+            <form method="post" asp-action="Login">
+                <h2>Welcome</h2>
+                <label>
+                    <span>Email</span>
+                    <input type="text" asp-for="Email" />
+                    <span asp-validation-for="Email" style="color: red"></span>
+                </label>
+                <label>
+                    <span>Password</span>
+                    <input type="password" asp-for="Password" />
+                    <span asp-validation-for="Password" style="color:red"></span>
+                </label>
+                <p class="forgot-pass">Forgot password?</p>
+                <button type="submit" class="submit">Sign In</button>
+                <br />
+                <div asp-validation-summary="ModelOnly" style="text-align: center; color:red"></div>
+                @* <label>
+                <span class="error" color='red'>@ViewData["error"]</span>
+                </label> *@
+            </form>
+        </div>
+
+        <div class="sub-cont">
+            <div class="img">
+                <div class="img__text m--up">
+
+                    <h3>Don't have an account? Please Sign up!</h3>
+                </div>
+                <div class="img__text m--in">
+
+                    <h3>If you already has an account, just sign in.</h3>
+                </div>
+                <div class="img__btn">
+                    <span class="m--up">Sign Up</span>
+                    <span class="m--in">Sign In</span>
+                </div>
+            </div>
+            <form method="post" asp-action="Register">
+                <div class="form sign-up">
+                    <h2>Create your Account</h2>
+                    <label>
+                        <span>Name</span>
+                        <input type="text" asp-for="UserName" />
+                        <span asp-validation-for="UserName" style="color:red;"></span>
+                    </label>
+                    <label>
+                        <span>Email</span>
+                        <input type="email" asp-for="Email" />
+                        <span asp-validation-for="Email" style="color:red;"></span>
+                    </label>
+                    <label>
+                        <span>Password</span>
+                        <input type="password" asp-for="Password" />
+                        <span asp-validation-for="Password" style="color:red;"></span>
+                    </label>
+                    <button type="submit" class="submit">Sign Up</button>
+                    <div asp-validation-summary="ModelOnly" style="text-align:center; color:red"></div>
+                    @* <label>
+                    <span class="error" color="red">@ViewData["error"]</span>
+                    </label> *@
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+    <script>
+        document.querySelector('.img__btn').addEventListener('click', function () {
+
+
+            document.querySelector('.cont').classList.toggle('s--signup');
+        });
+
+    </script>
+</body>
+</html>

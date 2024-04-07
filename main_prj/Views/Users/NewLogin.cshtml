@@ -1,0 +1,74 @@
+﻿
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Computer Shop</title>
+    <link rel="stylesheet" href="/css/newloginstyle.css">
+</head>
+<body>
+    <div class="container">
+        <form class="form login-form" method="post" id="login-form">
+            <h2>Login</h2>
+            <div class="input-group">
+                <input type="text" id="email" name="email" required>
+                <label >Email</label>
+            </div>
+            <div class="input-group">
+                <input type="password" id="password" name="password" required>
+                <label >Password</label>
+            </div>
+            <button type="submit">Login</button>
+            <p class="message">Don't have an account? <a href="signup.html">Sign up</a></p>
+        </form>
+    </div>
+
+    <script>
+        var form = document.getElementById("login-form");
+        form.addEventListener("submit", function (event) {
+            event.preventDefault();
+            var formData = new FormData(this);
+            var formObject = {};
+            formData.forEach(function (value, key) {
+                formObject[key] = value;
+            });
+
+            // Log form data
+            console.log("Form submitted with data:");
+            console.log(formObject);
+            
+            var email = document.getElementById("email").value.trim();
+            var password = document.getElementById("password").value;
+            var data = {
+                email: email,
+                password: password
+            }
+            console.log(data);
+
+            fetch("/Users/Login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            })
+                .then(function (response) {
+                    if (response.ok) {
+                        return response.text();
+                    } else {
+                        throw new Error("Error sending data to controller")
+                    }
+                })
+                .catch(function (error) {
+                    console.log("An error occurs: ", error)
+                })
+        }) 
+    </script>
+</body>
+
+</html>
+

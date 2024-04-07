@@ -1,0 +1,44 @@
+﻿@model main_prj.Models.Monitor;
+<html lang="vi">
+<head>
+	<meta charset="utf-8" />
+	<title>Table Style</title>
+	<meta name="viewport" content="initial-scale=1.0; maximum-scale=1.0; width=device-width;">
+	<link href="/css/DetailPartial.css" rel="stylesheet"/>
+	
+</head>
+
+<body>
+	
+	<table class="table-fill">		
+		<tbody class="table-hover">
+			<tr>
+				<td class="text-left">Hãng sản xuất</td>
+				<td class="text-left">@Model.Brand</td>
+			</tr>
+			<tr>
+				<td class="text-left">Mẫu sản phẩm</td>
+				<td class="text-left">@Model.Model</td>
+			</tr>
+			<tr>
+				<td class="text-left">Kích thước màn</td>
+				<td class="text-left">@Model.Size inch</td>
+			</tr>
+			<tr>
+				<td class="text-left">Tỉ lệ khung hình</td>
+				<td class="text-left">@Model.AspectRatio</td>
+			</tr>
+			<tr>
+				<td class="text-left">Độ phân giải</td>
+				<td class="text-left">@Model.Resolution</td>
+			</tr>
+			<tr>
+				<td class="text-left">Tần số quét</td>
+				<td class="text-left">@Model.RefreshRate Hz</td>
+			</tr>
+		</tbody>
+	</table>
+
+
+</body>
+</html>

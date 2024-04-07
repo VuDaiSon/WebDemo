@@ -1,0 +1,99 @@
+﻿@model main_prj.Models.Product
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Xóa</h1>
+
+<h3>Bạn chắc chắn muốn xóa sản phẩm này?</h3>
+<div>
+    <h4>Product</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            <label>Tên sản phẩm</label>
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ProductName)
+        </dd>
+        <dt class = "col-sm-2">
+            @* @Html.DisplayNameFor(model => model.Price) *@
+            <label>Đơn giá</label>
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+        <dt class = "col-sm-2">
+            @* @Html.DisplayNameFor(model => model.StockQuantity) *@
+            <label>Số lượng tồn kho</label>
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.StockQuantity)
+        </dd>
+        <dt class = "col-sm-2">
+            @* @Html.DisplayNameFor(model => model.ProductDescription) *@
+            <label>Mô tả</label>
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ProductDescription)
+        </dd>
+        
+        <dt class = "col-sm-2">
+            @* @Html.DisplayNameFor(model => model.Warranty) *@
+            <label>Bảo hanhf</label>
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Warranty)
+        </dd>
+    </dl>
+    
+    <form id="deleteForm">
+        <input type="hidden" value="@Model.ProductId" id="productId"/>
+        <input type="submit" value="Xóa" class="btn btn-danger" id="submitBtn"/> |
+        <a asp-action="Index">Về danh sách</a>
+    </form>
+</div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#deleteForm").submit(function (e) {
+                e.preventDefault();
+
+                var productId = parseInt($("#productId").val(), 10);
+
+                // Check if productId is a valid integer
+                if (isNaN(productId)) {
+                    alert("Invalid product ID");
+                    return;
+                }
+                var data = {
+                    id: productId
+                };
+                console.log(data);
+                $.ajax({
+                    url: "/Products/DeleteConfirmed",
+                    type: 'POST',
+                    contentType: 'application/json; charset=utf-8',
+                    data: JSON.stringify({ id: productId }),
+                    dataType: 'json',
+                    success: function (response) {
+                        if (response.success == true) {
+                            alert("Successfully deleted");
+                            window.location.href = response.returnUrl;
+                        }
+                        else {
+                            alert(response.errors);
+                        }
+                    },
+                    error: function () {
+                        alert('An error occurs while processing the request');
+                    }
+                });
+            });
+        });
+    </script>
+}

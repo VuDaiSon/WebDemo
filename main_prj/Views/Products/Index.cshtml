@@ -1,0 +1,71 @@
+﻿@model IEnumerable<main_prj.Models.Product>
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewData["Title"] = "Index";
+}
+
+<h1>Danh sách sản phẩm</h1>
+
+<p>
+    <a asp-action="Create">Tạo mới</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @* @Html.DisplayNameFor(model => model.ProductName) *@
+                <label>Tên sản phẩm</label>
+            </th>
+            <th>
+                @* @Html.DisplayNameFor(model => model.Price) *@
+                <label>Đơn giá</label>
+            </th>
+            <th>
+                @* @Html.DisplayNameFor(model => model.StockQuantity) *@
+                <label>Số lượng tồn kho</label>
+            </th>
+            <th>
+                @* @Html.DisplayNameFor(model => model.ProductDescription) *@
+                <label>Ảnh xem trước</label>
+            </th>
+            @* <th>
+                @Html.DisplayNameFor(model => model.ProductImages)
+            </th> *@
+            <th>
+                @* @Html.DisplayNameFor(model => model.Warranty) *@
+                <label>Bảo hành</label>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StockQuantity)
+            </td>
+            <td>
+                <img src="/ProductImages/PreviewImages/@item.ProductId/Preview.webp" width="50" height="50"/>
+            </td>
+            @* <td>
+                @Html.DisplayFor(modelItem => item.ProductImages)
+            </td> *@
+            <td>
+                @Html.DisplayFor(modelItem => item.Warranty)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ProductId">Sửa</a> |
+                <a asp-action="Details" asp-route-id="@item.ProductId">Chi tiết</a> |
+                <a asp-action="Delete" asp-route-id="@item.ProductId">Xóa</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

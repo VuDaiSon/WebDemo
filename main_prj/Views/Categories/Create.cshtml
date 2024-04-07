@@ -1,0 +1,49 @@
+﻿@model main_prj.Models.CategoryModificationModel
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewData["Title"] = "Create";
+}
+<style>
+    #preview {
+        width: 360px;
+        height: 240px;
+        border: 1px solid black;
+        margin-top: 5px;
+    }
+</style>
+<h1>Tạo mới</h1>
+
+<h4>Danh mục</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Category.CategoryName" class="control-label">Tên danh mục</label>
+                <input asp-for="Category.CategoryName" class="form-control" />
+                <span asp-validation-for="Category.CategoryName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="imageFile" class="control-label">Ảnh xem trước</label>
+                <input asp-for="imageFile" class="form-control" type="file" />
+                <img id="preview" src="#" alt="" />
+                <span asp-validation-for="imageFile" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Về danh sách</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/js/category/create.js"></script>
+}

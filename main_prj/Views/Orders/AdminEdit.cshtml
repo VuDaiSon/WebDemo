@@ -1,0 +1,80 @@
+﻿@model main_prj.Models.Order
+
+@{
+    ViewData["Title"] = "AdminEdit";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>Sửa</h1>
+
+<h4>Đơn hàng</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AdminEdit" method="post" asp-route-id="@Model.OrderId">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="OrderId" />
+            <div class="form-group">
+                <label asp-for="UserId" class="control-label">Mã khách hàng</label>
+                <input asp-for="UserId" class="form-control" readonly/>
+                <span asp-validation-for="UserId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OrderDate" class="control-label">Ngày đặt</label>
+                <input asp-for="OrderDate" class="form-control" readonly/>
+                <span asp-validation-for="OrderDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TotalValue" class="control-label">Tổng tiền</label>
+                <input asp-for="TotalValue" class="form-control" readonly/>
+                <span asp-validation-for="TotalValue" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Status" class="control-label">Trạng thái</label>
+                @* <input asp-for="Status" class="form-control" /> *@
+                <select asp-for="Status" asp-items="@((SelectList)ViewData["orderStatuses"])" class="form-control">
+
+                </select>
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group" hidden>
+                <label asp-for="CartId" class="control-label"></label>
+                <input asp-for="CartId" class="form-control" readonly/>
+                <span asp-validation-for="CartId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ShippingAddress" class="control-label">Địa chỉ nhận hàng</label>
+                <input asp-for="ShippingAddress" class="form-control" readonly/>
+                <span asp-validation-for="ShippingAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ContactNumber" class="control-label">Điện thoại liên hệ</label>
+                <input asp-for="ContactNumber" class="form-control" readonly/>
+                <span asp-validation-for="ContactNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Receiver" class="control-label">Tên người nhận</label>
+                <input asp-for="Receiver" class="form-control" readonly/>
+                <span asp-validation-for="Receiver" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ShippingFee" class="control-label">Phí vận chuyển</label>
+                <input asp-for="ShippingFee" class="form-control" readonly/>
+                <span asp-validation-for="ShippingFee" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PaymentMethod" class="control-label">Phương thức thanh toán</label>
+                <input asp-for="PaymentMethod" class="form-control" readonly/>
+                <span asp-validation-for="PaymentMethod" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Lưu" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Về danh sách</a>
+</div>
+

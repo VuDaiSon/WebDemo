@@ -1,0 +1,57 @@
+﻿@model main_prj.Models.Headphone;
+
+<html lang="vi">
+<head>
+	<meta charset="utf-8" />
+	<title>Table Style</title>
+	<meta name="viewport" content="initial-scale=1.0; maximum-scale=1.0; width=device-width;">
+	<link href="/css/DetailPartial.css" rel="stylesheet"/>
+	
+</head>
+
+<body>
+	
+	<table class="table-fill">		
+		<tbody class="table-hover">
+			<tr>
+				<td class="text-left">Hãng sản xuất</td>
+				<td class="text-left">@Model.Brand</td>
+			</tr>
+			<tr>
+				<td class="text-left">Mẫu sản phẩm</td>
+				<td class="text-left">@Model.Model</td>
+			</tr>
+			<tr>
+				<td class="text-left">Kiểu tai nghe</td>
+				<td class="text-left">@Model.HeadphoneType</td>
+			</tr>
+			<tr>
+				<td class="text-left">Màu sắc</td>
+				<td class="text-left">@Model.Color</td>
+			</tr>
+			<tr>
+				<td class="text-left">Kiểu kết nối</td>
+				<td class="text-left">@Model.ConnectionType</td>
+			</tr>
+			<tr>
+				<td class="text-left">Pin</td>
+				<td class="text-left">@Model.Battery</td>
+			</tr>
+			<tr>
+				<td class="text-left">Microphone</td>
+				<td class="text-left">@Model.Microphone</td>
+			</tr>
+			<tr>
+				<td class="text-left">Tương thích</td>
+				<td class="text-left">@Model.Compatibilities</td>
+			</tr>
+			<tr>
+				<td class="text-left">Phụ kiện</td>
+				<td class="text-left">@Model.Accessories</td>
+			</tr>
+		</tbody>
+	</table>
+
+
+</body>
+</html>

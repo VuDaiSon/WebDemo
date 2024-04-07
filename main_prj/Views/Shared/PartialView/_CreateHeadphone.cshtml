@@ -1,0 +1,55 @@
+﻿@model main_prj.Models.ProductModificationModel;
+
+
+@* <form asp-action="Create">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div> *@
+<div class="form-group">
+    <h5>Thông số kỹ thuật (Tai nghe)</h5>
+</div>
+<div class="form-group">
+    <label asp-for="Headphone.Brand" class="control-label">Hãng sản xuất</label>
+    <input asp-for="Headphone.Brand" class="form-control" />
+    <span asp-validation-for="Headphone.Brand" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="Headphone.Model" class="control-label">Mẫu sản phẩm</label>
+    <input asp-for="Headphone.Model" class="form-control" />
+    <span asp-validation-for="Headphone.Model" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="Headphone.Compatibilities" class="control-label">Tương thích</label>
+    <input asp-for="Headphone.Compatibilities" class="form-control" />
+    <span asp-validation-for="Headphone.Compatibilities" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="Headphone.ConnectionType" class="control-label">Kiểu kết nối</label>
+    <input asp-for="Headphone.ConnectionType" class="form-control" />
+    <span asp-validation-for="Headphone.ConnectionType" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="Headphone.Battery" class="control-label">Pin</label>
+    <input asp-for="Headphone.Battery" class="form-control" />
+    <span asp-validation-for="Headphone.Battery" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="Headphone.Accessories" class="control-label">Phụ kiện</label>
+    <input asp-for="Headphone.Accessories" class="form-control" />
+    <span asp-validation-for="Headphone.Accessories" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="Headphone.Microphone" class="control-label"></label>
+    <input asp-for="Headphone.Microphone" class="form-control" />
+    <span asp-validation-for="Headphone.Microphone" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="Headphone.HeadphoneType" class="control-label">Kiểu tai nghe</label>
+    <input asp-for="Headphone.HeadphoneType" class="form-control" />
+    <span asp-validation-for="Headphone.HeadphoneType" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="Headphone.Color" class="control-label">Màu sắc</label>
+    <input asp-for="Headphone.Color" class="form-control" />
+    <span asp-validation-for="Headphone.Color" class="text-danger"></span>
+</div>
+
+@* </form> *@

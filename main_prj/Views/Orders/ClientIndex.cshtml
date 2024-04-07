@@ -1,0 +1,95 @@
+﻿@model IEnumerable<main_prj.Models.Order>
+
+@{
+    ViewData["Title"] = "Đơn hàng";
+    Layout = "~/Views/Shared/_LayoutClient.cshtml";
+}
+
+<h1>Đơn hàng đã đặt</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @* @Html.DisplayNameFor(model => model.OrderDate) *@
+                <label>Ngày đặt</label>
+            </th>
+            <th>
+                @* @Html.DisplayNameFor(model => model.TotalValue) *@
+                <label>Tổng tiền</label>
+            </th>
+            <th>
+                @* @Html.DisplayNameFor(model => model.Status) *@
+                <label>Trạng thái</label>
+            </th>
+            <th>
+                @* @Html.DisplayNameFor(model => model.ShippingAddress) *@
+                <label>Địa chỉ nhận hàng</label>
+            </th>
+            <th>
+                @* @Html.DisplayNameFor(model => model.ContactNumber) *@
+                <label>Điện thoại liên hệ</label>
+            </th>
+            <th>
+                @* @Html.DisplayNameFor(model => model.Receiver) *@
+                <label>Tên người nhận</label>
+            </th>
+            <th>
+                @* @Html.DisplayNameFor(model => model.ShippingFee) *@
+                <label>Phí vận chuyển</label>
+            </th>
+            <th>
+                @* @Html.DisplayNameFor(model => model.PaymentMethod) *@
+                <label>Phương thức thanh toán</label>
+            </th>
+            @* <th>
+                @Html.DisplayNameFor(model => model.Cart)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User)
+            </th> *@
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalValue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShippingAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContactNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Receiver)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShippingFee)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaymentMethod)
+            </td>
+           @*  <td>
+                @Html.DisplayFor(modelItem => item.Cart.CartId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.UserId)
+            </td> *@
+            <td>                
+                <a asp-action="ClientDetails" asp-route-id="@item.OrderId">Chi tiết</a> |
+                <a asp-action="CancelOrder" asp-route-id="@item.OrderId">Hủy đơn</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

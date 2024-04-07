@@ -1,0 +1,44 @@
+﻿@model main_prj.Models.ProductModificationModel;
+
+
+@* <form asp-action="Create">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div> *@
+<div class="form-group">
+    <h5>Thông số kỹ thuật (Chuột)</h5>
+</div>
+<div class="form-group">
+    <label asp-for="Mouse.Brand" class="control-label">Hãng sản xuất</label>
+    <input asp-for="Mouse.Brand" class="form-control" />
+    <span asp-validation-for="Mouse.Brand" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="Mouse.Model" class="control-label">Mẫu sản phẩm</label>
+    <input asp-for="Mouse.Model" class="form-control" />
+    <span asp-validation-for="Mouse.Model" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="Mouse.Weight" class="control-label">Khối lượng</label>
+    <input asp-for="Mouse.Weight" class="form-control" />
+    <span asp-validation-for="Mouse.Weight" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="Mouse.Resolution" class="control-label">Độ phân giải</label>
+    <input asp-for="Mouse.Resolution" class="form-control" />
+    <span asp-validation-for="Mouse.Resolution" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="Mouse.ConnectionType" class="control-label">Kiểu kết nối</label>
+    <input asp-for="Mouse.ConnectionType" class="form-control" />
+    <span asp-validation-for="Mouse.ConnectionType" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="Mouse.Battery" class="control-label">Pin</label>
+    <input asp-for="Mouse.Battery" class="form-control" />
+    <span asp-validation-for="Mouse.Battery" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="Mouse.Color" class="control-label">Màu sắc</label>
+    <input asp-for="Mouse.Color" class="form-control" />
+    <span asp-validation-for="Mouse.Color" class="text-danger"></span>
+</div>
+@* </form> *@

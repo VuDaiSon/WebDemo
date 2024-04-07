@@ -1,0 +1,37 @@
+﻿@model IEnumerable<main_prj.Models.Category>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Tạo danh mục mới</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @* @Html.DisplayNameFor(model => model.CategoryName) *@
+                <label>Tên danh mục</label>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryName)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.CategoryId">Sửa</a> |
+                <a asp-action="Details" asp-route-id="@item.CategoryId">Chi tiết</a> |
+                <a asp-action="Delete" asp-route-id="@item.CategoryId">Xóa</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

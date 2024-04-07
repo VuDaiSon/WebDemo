@@ -1,0 +1,121 @@
+﻿@model IEnumerable<main_prj.Models.CartDetail>
+@{
+    Layout = null;
+}
+
+
+<div class="container-fluid pt-5">
+    <div class="row px-xl-5">
+        <div class="col-lg-8 table-responsive mb-5">
+            @if (Model.Count() == 0)
+            {
+                <div class="container-fluid  mt-100">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-body cart">
+                                    <div class="col-sm-12 empty-cart-cls text-center">
+                                        <img src="https://i.imgur.com/dCdflKN.png" width="130" height="130" class="img-fluid mb-4 mr-3">
+                                        <h3><strong>Your Cart is Empty</strong></h3>
+                                        <h4>Add something to make me happy :)</h4>
+                                        <a href="#" class="btn btn-primary cart-btn-transform m-3" data-abc="true">continue shopping</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <table class="table table-bordered text-center mb-0">
+                    <thead class="bg-secondary text-dark">
+                        <tr>
+                            <th>Products</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
+                            <th>Remove</th>
+                        </tr>
+                    </thead>
+                    <tbody class="align-middle">
+                        
+                        @foreach (var item in Model)
+                        {                            
+                            var value = item.Product.Price * item.Quantity;
+                            <tr class="item-row" data-cart-detail-id="@item.CartDetailId">
+                                <td class="align-middle" style="position:relative">
+                                    <img src="~/ProductImages/PreviewImages/@item.ProductId/Preview.webp" alt="" style="width: 50px;">
+                                    <p> @item.Product.ProductName</p>                                   
+                                </td>
+                                <td class="align-middle">
+                                    <span class="item-price">@item.Product.Price.ToString("##,###,000")</span>₫
+                                </td>
+                                <td class="align-middle">
+                                    <div class="input-group quantity mx-auto" style="width: 100px;">
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-sm btn-primary btn-minus btn-quantity-minus">
+                                                <i class="fa fa-minus"></i>
+                                            </button>
+                                        </div>
+                                        <input readonly type="text" class="form-control form-control-sm bg-secondary text-center item-quantity" 
+                                            value="@item.Quantity">
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-sm btn-primary btn-plus btn-quantity-plus">
+                                                <i class="fa fa-plus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="align-middle">
+                                    <span class="item-subtotal">@value.ToString("##,###,000")₫</span>
+                                </td>
+                                <td class="align-middle">
+                                    <button class="btn btn-sm btn-primary btn-remove">
+                                        <i class="fa fa-times"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+        </div>
+        <div class="col-lg-4">
+            <form class="mb-5" action="">
+                <div class="input-group">
+                    <input type="text" class="form-control p-4" placeholder="Coupon Code">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary">Apply Coupon</button>
+                    </div>
+                </div>
+            </form>
+            <div class="card border-secondary mb-5">
+                <div class="card-header bg-secondary border-0">
+                    <h4 class="font-weight-semi-bold m-0">Cart Summary</h4>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex justify-content-between mb-3 pt-1">
+                        <h6 class="font-weight-medium">Tạm tính</h6>
+                        <h6 class="font-weight-medium" id="subtotal-all" onload="updateTotal()"></h6>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <h6 class="font-weight-medium">Phí vận chuyển</h6>
+                        <h6 class="font-weight-medium" id="shipping-fee">0₫</h6>
+                    </div>
+                </div>
+                <div class="card-footer border-secondary bg-transparent">
+                    <div class="d-flex justify-content-between mt-2">
+                        <h5 class="font-weight-bold">Thành tiền</h5>
+                        <h5 class="font-weight-bold" id="total-all" onload="totalAll()"></h5>
+                    </div>                    
+                    <a class="btn btn-block btn-primary my-3 py-3" asp-action="Checkout" asp-controller="Orders">Chuyển đến thanh toán</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/js/cart.js"></script>
+
+

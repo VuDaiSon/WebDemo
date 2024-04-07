@@ -1,0 +1,100 @@
+﻿@model main_prj.Models.ProductModificationModel
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewData["Title"] = "Details";
+}
+
+<h1>Chi tiết</h1>
+
+<div>
+    <h4>Sản phẩm</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @* @Html.DisplayNameFor(model => model.Product.ProductName) *@
+            <label>Tên sản phẩm</label>
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Product.ProductName)
+        </dd>
+        <dt class = "col-sm-2">
+            @* @Html.DisplayNameFor(model => model.Product.Price) *@
+            <label>Đơn giá</label>
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Product.Price)
+        </dd>
+        <dt class = "col-sm-2">
+            @* @Html.DisplayNameFor(model => model.Product.StockQuantity) *@
+            <label>Số lượng tồn kho</label>
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Product.StockQuantity)
+        </dd>
+        <dt class = "col-sm-2">
+            @* @Html.DisplayNameFor(model => model.Product.ProductDescription) *@
+            <label>Mô tả</label>
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Product.ProductDescription)
+        </dd>
+        
+        <dt class = "col-sm-2">
+            @* @Html.DisplayNameFor(model => model.Product.Warranty) *@
+            <label>Bảo hành</label>
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Product.Warranty)
+        </dd>
+        <dt class="col-sm-2">
+            @* @Html.DisplayNameFor(model => model.Product.CategoryId) *@
+            <label>Danh mục</label>
+        </dt>
+        <dd class="col-sm-10">
+            @* @Html.DisplayFor(model => model.Product.CategoryId) *@
+            <label>@ViewBag.CategoryName</label>
+        </dd>
+        <dd class="col-sm-2">
+            @* @Html.DisplayNameFor(model => model.PreviewImage) *@
+            <label>Ảnh xem trước</label>
+        </dd>
+        <dt class ="col-sm-10">
+            <img src="/ProductImages/PreviewImages/@Model.Product.ProductId/Preview.webp" 
+                width="100" height="100" style="border:1px solid black"/>
+        </dt>
+        <dd class="col-sm-2">
+            @* @Html.DisplayNameFor(model => model.DetailImages) *@
+            <label>Ảnh chi tiết</label>
+        </dd>
+        <dt class="col-sm-10">
+            @foreach(var image in ViewData["detailImages"] as List<string>)
+            { 
+                <img src="/ProductImages/@Model.Product.ProductId/@image" 
+                    width="100" height="100" style="margin-right: 5px; margin-top: 5px; border:1px solid black"/>
+            }
+        </dt>
+    </dl>
+    <hr />
+    @switch(Model.Product.CategoryId)
+    {
+        case 1:            
+            <partial name="PartialView/ProductSpecs/Monitor" model="Model.Monitor"></partial>
+            break;
+        case 2:
+            <partial name="PartialView/ProductSpecs/Headphone" model="Model.Headphone"></partial>
+            break;
+        case 3:
+            <partial name="PartialView/ProductSpecs/Mouse" model="Model.Mouse"></partial>
+            break;
+        case 4:
+            <partial name="PartialView/ProductSpecs/Keyboard" model="Model.Keyboard"></partial>
+            break;
+        default:
+            break;
+    }
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Product.ProductId">Sửa</a> |
+    <a asp-action="Index">Về danh sách</a>
+</div>

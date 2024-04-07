@@ -1,0 +1,9 @@
+﻿@model IEnumerable<main_prj.Models.CartDetail>
+@{
+    ViewData["Title"] = "Giỏ hàng";
+    Layout = "~/Views/Shared/_LayoutClient.cshtml";
+}
+@await Html.PartialAsync("PartialView/_CartPartial", Model)
+
+
+

@@ -1,0 +1,8 @@
+﻿@model IEnumerable<main_prj.Models.Product>
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    var count = Model.Count(n => n.CategoryId == Convert.ToInt32(ViewData["id"]));
+}
+<p class="text-right">@count products</p>

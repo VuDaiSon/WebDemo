@@ -1,0 +1,132 @@
+﻿@model main_prj.Models.ProductModificationModel
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewData["Title"] = "Edit";
+}
+<style>
+    #preview {
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 100px;
+        max-height: 100px;
+        border: 1px solid black;
+        margin: 5px;
+    }
+
+    .detail-preview {        
+        max-height: 100px;
+        max-width: 100px;
+        border: 1px solid black;
+        margin-top: 5px;
+        margin-right: 5px;
+    }
+</style>
+
+<h1>Sửa</h1>
+
+<h4>Sản phẩm</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" method="post" asp-route-id="@Model.Product.ProductId" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Product.ProductId" />
+            <div class="form-group">
+                <label asp-for="Product.ProductName" class="control-label">Tên sản phẩm</label>
+                <input asp-for="Product.ProductName" class="form-control" />
+                <span asp-validation-for="Product.ProductName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Product.Price" class="control-label">Đơn giá</label>
+                <input asp-for="Product.Price" class="form-control" />
+                <span asp-validation-for="Product.Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Product.StockQuantity" class="control-label">Số lượng tồn kho</label>
+                <input asp-for="Product.StockQuantity" class="form-control" />
+                <span asp-validation-for="Product.StockQuantity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Product.ProductDescription" class="control-label">Mô tả</label>
+                <textarea asp-for="Product.ProductDescription" class="form-control" style="height:300px"></textarea> 
+                <span asp-validation-for="Product.ProductDescription" class="text-danger"></span>
+            </div>            
+            <div class="form-group">
+                <label asp-for="Product.Warranty" class="control-label">Bảo hành</label>
+                <input asp-for="Product.Warranty" class="form-control" />
+                <span asp-validation-for="Product.Warranty" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Product.CategoryId" class="control-label">Danh mục</label>
+                <select asp-for="Product.CategoryId" class="form-control"
+                        asp-items="@((SelectList)ViewData["categoryList"])">
+                   
+                </select>
+                <span asp-validation-for="Product.CategoryId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">Ảnh xem trước (cũ)</label> <br />
+                <img src="/ProductImages/PreviewImages/@Model.Product.ProductId/Preview.webp" 
+                    style="margin:5px; max-height:100px; max-width:100px" />
+            </div>
+            <div class="form-group">
+                <label asp-for="PreviewImage" class="control-label">Ảnh xem trước (mới)</label>
+                <input asp-for="PreviewImage" class="form-control" type="file" />
+                <img id="preview" src="#" alt="" />
+                <span asp-validation-for="PreviewImage" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">Ảnh chi tiết (cũ)</label>
+                <br />
+                @foreach(var image in ViewData["detailImages"] as List<string>)                    
+                {
+                    <img src="/ProductImages/@Model.Product.ProductId/@image"
+                        width="100" height="100" style="margin-right: 5px; margin-top: 5px; border:1px solid black" />
+                }
+            </div>
+            <div class="form-group">
+                <label asp-for="DetailImages" class="control-label">Ảnh chi tiết (mới)</label>
+                <input asp-for="DetailImages" multiple class="form-control" type="file" />
+                <div id="detailPreviews">
+                </div>
+                <span asp-validation-for="DetailImages" class="text-danger"></span>
+            </div>
+
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Lưu" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<hr>
+@switch(Model.Product.CategoryId)
+{
+    case 1:
+        <partial name="PartialView/ProductSpecs/Edit/Monitor" model="Model.Monitor"></partial>
+        break;
+    case 2:
+        <partial name="PartialView/ProductSpecs/Edit/Headphone" model="Model.Headphone"></partial>
+        break;
+    case 3:
+        <partial name="PartialView/ProductSpecs/Edit/Mouse" model="Model.Mouse"></partial>
+        break;
+    case 4:
+        <partial name="PartialView/ProductSpecs/Edit/Keyboard" model="Model.Keyboard"></partial>
+        break;
+    default:
+        break;
+}
+
+@* <div>
+    <a asp-action="Index">Back to List</a>
+</div> *@
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="/js/product/edit.js"></script>
+}
