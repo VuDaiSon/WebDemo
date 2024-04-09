@@ -42,25 +42,25 @@ namespace main_prj.Controllers
         public IActionResult Checkout()
         {
             var userId = HttpContext.Session.GetInt32("UserId");
-            if(userId == null)
+            if (userId == null)
             {
                 TempData["ErrorMessage"] = "Cần đăng nhập để thực hiện chức năng này";
                 return RedirectToAction("Index", "Home");
             }
 
-            var user = _context.Users.FirstOrDefault(u => u.UserId == userId);
             var cart = _context.Carts.FirstOrDefault(c => c.UserId == userId && c.Status == "Active");
 
-            List<CartDetail> cartDetails = _context.CartDetails.Where(c => c.CartId == cart.CartId).ToList();
-
-            if (cart == null || cart.CartDetails.Count == 0)
+            if (cart == null)
             {
                 TempData["ErrorMessage"] = "Giỏ hàng trống. Hãy thêm sản phẩm vào giỏ hàng để tiến hành thanh toán";
                 return RedirectToAction("Index", "Home");
             }
-            
+
+            var user = _context.Users.FirstOrDefault(u => u.UserId == userId);
+            var cartDetails = _context.CartDetails.Where(c => c.CartId == cart.CartId).ToList();
+
             List<Product> products = new List<Product>();
-            
+
             foreach (CartDetail cartDetail in cartDetails)
             {
                 var query = _context.Products.FirstOrDefault(p => p.ProductId == cartDetail.ProductId);
@@ -72,10 +72,11 @@ namespace main_prj.Controllers
             {
                 subtotal += cartDetails[i].Quantity * (int)products[i].Price;
             }
-            
+
             int shippingFee = CalculateShipingFee(subtotal);
 
-            CheckoutViewModel viewModel = new CheckoutViewModel { 
+            CheckoutViewModel viewModel = new CheckoutViewModel
+            {
                 User = user,
                 Cart = cart,
                 CartDetails = cartDetails,
@@ -85,6 +86,7 @@ namespace main_prj.Controllers
             };
             return View(viewModel);
         }
+
 
         [Route("ConfirmOrder")]
         [HttpPost]
